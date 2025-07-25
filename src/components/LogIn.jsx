@@ -2,36 +2,39 @@ import React, { use, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/strore/userSlice";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/globalApi";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("risabh@gmail.com");
+  const [error, setError] = useState("");
   const [password, setPassword] = useState("risabh@123#");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/login", {
-        email,
-        password
-      });
-      console.log(response)
+      const response = await axios.post(
+        BASE_URL + "/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response);
 
-      dispatch(addUser(response?.data))
-
+      dispatch(addUser(response?.data));
+      navigate("/");
     } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log("Request canceled", error.message);
-      } else {
-        console.error("Request failed:", error.message);
-        console.error("Full error object:", error);
-      }
+      console.log(error, "line no29");
+      setError(error?.response?.data?.message || "Something wetnt wrong..!");
     }
   };
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-pink-300 via-indigo-200 to-rose-500
- flex items-center justify-center px-4"
-    >
+    <div className="min-h-screen bg-gradient-to-br from-pink-300 via-indigo-200 to-rose-500 flex items-center justify-center px-4">
       <div className="w-full max-w-md shadow-xl rounded-2xl bg-white p-8 space-y-6">
         <h2 className="text-2xl font-bold text-center text-blue-700">
           Welcome Back
@@ -72,10 +75,9 @@ const Login = () => {
               required
             />
           </div>
-
+          <p className="text-red-500"> {error}</p>
           <button
             onClick={() => handleLogin()}
-
             className="btn btn-primary w-full"
           >
             Login
