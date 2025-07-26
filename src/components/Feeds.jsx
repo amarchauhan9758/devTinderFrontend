@@ -12,8 +12,6 @@ function Feeds() {
   // const feedData = useSelector((store)=> store.addFeeds)
 
   const feedData = useSelector((store) => store?.feed);
-  console.log(feedData, "line no 15");
-
 
   const getFeedData = async () => {
     try {
@@ -35,10 +33,11 @@ function Feeds() {
   console.log(feedData, "line no 40");
 
   return (
-    feedData &&
-    <div className="flex justify-center">
-      <UserCards userData={feedData[0]} />
-    </div>
+    feedData && (
+      <div className="flex justify-center">
+        <UserCards userData={feedData[0]} />
+      </div>
+    )
   );
 }
 
