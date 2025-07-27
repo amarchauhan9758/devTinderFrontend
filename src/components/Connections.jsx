@@ -22,7 +22,7 @@ function Connections() {
       console.log(responseData.data);
       setConnections(responseData?.data?.data || []);
 
-      const resPending = await axios.get(`${BASE_URL}/user/requests`, {
+      const resPending = await axios.get(BASE_URL + "/user/requests", {
         withCredentials: true,
       });
       dispatch(pendingRequest(resPending?.data?.data));
@@ -36,7 +36,7 @@ function Connections() {
 
   useEffect(() => {
     getAllConnections();
-  }, []);
+  }, [activeTab]);
 
   const handleAccept = async (status, id) => {
     try {
@@ -69,6 +69,7 @@ function Connections() {
           withCredentials: true,
         }
       );
+      dispatch(pendingRequestRemove(id));
       setPending(pendingUser.filter((u) => u.fromUser._id !== id));
       console.log(responseData, "line no 70");
     } catch (error) {
@@ -148,7 +149,7 @@ function Connections() {
           {activeTab === "connections" &&
             connections.map((user) => renderUserCard(user))}
           {activeTab === "pending" &&
-            pendingUser.map((item) => {
+            pendingUser?.map((item) => {
               console.log(item, "line no 152");
               const { _id, firstName, lastName, profileURL, about } =
                 item?.fromUserId;
