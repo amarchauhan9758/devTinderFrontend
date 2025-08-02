@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Body from "./components/body";
+import Body from "./components/Body";
 import LogIn from "./components/LogIn";
 import Profile from "./components/Profile";
 import { Provider } from "react-redux";
