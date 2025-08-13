@@ -6,6 +6,7 @@ import {
   pendingRequest,
   pendingRequestRemove,
 } from "./utils/strore/requestReceivedSlice";
+import { Link } from "react-router-dom";
 
 function Connections() {
   const pendingUser = useSelector((store) => store.pendingRequest);
@@ -22,10 +23,12 @@ function Connections() {
       console.log(responseData.data);
       setConnections(responseData?.data?.data || []);
 
-      const resPending = await axios.get(BASE_URL + "/user/requests", {
-        withCredentials: true,
-      });
-      dispatch(pendingRequest(resPending?.data?.data));
+      if (pending) {
+        const resPending = await axios.get(BASE_URL + "/user/requests", {
+          withCredentials: true,
+        });
+        dispatch(pendingRequest(resPending?.data?.data));
+      }
       //   setPending(resPending?.data?.data);
     } catch (error) {
       console.log(error.message);
@@ -47,7 +50,6 @@ function Connections() {
           withCredentials: true,
         }
       );
-      console.log(responseData, "line no 70");
 
       dispatch(pendingRequestRemove(id));
     } catch (error) {
@@ -57,8 +59,6 @@ function Connections() {
     const acceptedUser = pendingUser.find((u) => u.fromUser._id === id);
     setConnections([...connections, acceptedUser]);
   };
-
-  console.log(pendingUser, "line no 58");
 
   const handleReject = async (status, id) => {
     try {
@@ -71,7 +71,6 @@ function Connections() {
       );
       dispatch(pendingRequestRemove(id));
       setPending(pendingUser.filter((u) => u.fromUser._id !== id));
-      console.log(responseData, "line no 70");
     } catch (error) {
       console.log(error.message);
     }
@@ -94,6 +93,11 @@ function Connections() {
             {user.firstName + " " + user.lastName}
           </h4>
           <p className="text-sm text-gray-500">{user.about}</p>
+          <Link to={"/chat/" + user?._id}>
+            <button className="border  rounded  bg-green-600 p-2 font-semibold text-sm ">
+              Chats
+            </button>
+          </Link>
         </div>
       </div>
 

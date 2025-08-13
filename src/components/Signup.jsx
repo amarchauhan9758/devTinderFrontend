@@ -4,8 +4,10 @@ import { BASE_URL } from "../utils/globalApi";
 import laoder from "../utils/loader";
 
 import ApiErrorMessage from "../utils/ApiErrorMessage";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [firstName, setFirsName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
@@ -16,18 +18,31 @@ function Signup() {
   const [error, setError] = useState("");
 
   const handleSignUp = async () => {
-    const responseData = await axios.post(
-      BASE_URL + "/signup",
-      {
-        firstName,
-        lastName,
-        email,
-        password,
-      },
-      {
-        withCredentials: true,
-      }
-    );
+    setOpenLoader(true);
+    try {
+      const responseData = await axios.post(
+        BASE_URL + "/signup",
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      setOpenLoader(false);
+      navigate("/login");
+    } catch (error) {
+      setOpenLoader(false);
+      setOpenApiModel(true);
+
+      setErrorMessage(
+        error?.response?.data?.message || "Something went wrong ..!"
+      );
+    }
   };
 
   return (
