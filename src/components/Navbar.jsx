@@ -64,6 +64,11 @@ function Navbar() {
                 <span className="badge">{user?.firstName}</span>
               </Link>
             </li>
+
+            <li>
+              <Link to="/plan">Premier</Link>
+            </li>
+
             <li>
               <Link to="/connections">Connections</Link>
             </li>
