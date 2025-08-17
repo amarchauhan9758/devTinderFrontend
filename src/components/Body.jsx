@@ -20,7 +20,7 @@ function Body() {
 
       dispatch(addUser(responseData.data));
     } catch (error) {
-      if (error.status === 401) {
+      if (error.response && error.response.status === 401) {
         navigate("/login");
       }
 

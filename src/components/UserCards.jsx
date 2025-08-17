@@ -83,7 +83,7 @@ function UserCards({ userData }) {
 
         <div className="flex justify-end gap-3 mt-4">
           <button
-            onClick={() => handleRequest("rejected", _id)}
+            onClick={() => handleRequest("ignored", _id)}
             className="btn btn-outline btn-error"
           >
             Ignore
