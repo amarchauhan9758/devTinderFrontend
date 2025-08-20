@@ -4,7 +4,7 @@ import { BASE_URL } from "../utils/globalApi";
 import laoder from "../utils/loader";
 
 import ApiErrorMessage from "../utils/ApiErrorMessage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
   const navigate = useNavigate();
@@ -126,12 +126,12 @@ function Signup() {
 
             <div className="text-center">
               <p className="text-sm text-gray-300">
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   className="text-blue-600 hover:underline font-medium"
                 >
                   Sign In
-                </a>
+                </Link>
               </p>
             </div>
           </div>
