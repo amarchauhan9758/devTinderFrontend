@@ -4,6 +4,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [
     // other Vite plugins
-    react()
+    react(),
   ],
+  test: {
+    globals: true,
+    environment: "jsdom",
+  },
 });

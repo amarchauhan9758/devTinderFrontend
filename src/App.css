@@ -1,1 +1,5 @@
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: false;
+}
+
+;

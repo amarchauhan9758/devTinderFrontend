@@ -47,7 +47,7 @@ function Signup() {
 
   return (
     <div>
-      <div className="min-h-screen bg-gradient-to-br from-pink-300 via-indigo-200 to-rose-500 flex items-center justify-center px-4">
+      <div className="min-h-screen  flex items-center justify-center px-4">
         <div className="w-full max-w-md shadow-xl rounded-2xl bg-white p-8 space-y-6">
           <h2 className="text-2xl font-bold text-center text-blue-700">
             Welcome Back

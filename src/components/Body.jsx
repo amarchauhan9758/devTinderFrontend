@@ -7,6 +7,7 @@ import { BASE_URL } from "../utils/globalApi";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/strore/userSlice";
 import { useEffect } from "react";
+import LandingPage from "./LandingPage";
 
 function Body() {
   const navigate = useNavigate();

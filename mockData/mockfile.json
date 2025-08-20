@@ -1,0 +1,12 @@
+{
+  "_id": "689c78376ede8a0fa04b6ce0",
+  "firstName": "sachin",
+  "lastName": "Chauhan",
+  "password": "$2b$10$BXUy0BFwbN7IKYyB1QBHcOZBhbcN4jfzvkIQkw84jztBieVnkmmua",
+  "email": "amar@gmail.com",
+  "skils": [],
+  "profileURL": "https://cdn.vectorstock.com/i/1000v/51/05/male-profile-avatar-with-brown-hair-vector-12055105.jpg",
+  "about": "I am a frontend developer...",
+  "createdAt": "2025-08-13T11:34:15.890Z",
+  "updatedAt": "2025-08-13T11:34:15.890Z"
+}

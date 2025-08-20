@@ -7,9 +7,9 @@ import { addUser } from "./utils/strore/userSlice";
 
 function EditProfile({ user }) {
   const dispatch = useDispatch();
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-  const [age, setAge] = useState(user.age);
+  const [firstName, setFirstName] = useState(user?.firstName);
+  const [lastName, setLastName] = useState(user?.lastName);
+  const [age, setAge] = useState(user?.age);
   const [about, setAbout] = useState(user?.about);
   const [gender, setGender] = useState(user?.gender);
   const [skillsInput, setSkillsInput] = useState(
@@ -61,19 +61,18 @@ function EditProfile({ user }) {
   };
 
   const inputStyles =
-    "input input-bordered w-full bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500";
+    "input input-bordered w-full text-yellow-100 focus:outline-none focus:ring-2 focus:ring-purple-500";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-400 via-pink-300 to-indigo-400 p-6 flex items-center justify-center">
-      <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8 p-8 max-w-6xl w-full">
+    <div className="min-h-screen  p-6 flex items-center justify-center">
+      <div className=" rounded-3xl shadow-2xl border-2 grid grid-cols-1 md:grid-cols-2 gap-8 p-8 max-w-6xl w-full">
         {/* Left Side - Form */}
         <div className="space-y-6">
-          <h1 className="text-3xl font-bold text-gray-800">Edit Profile</h1>
+          <h1 className="text-3xl font-bold text-yellow-100">Edit Profile</h1>
           {/* Common Input Style */}
-          const inputStyles = "input input-bordered w-full bg-gray-100
-          text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500";
+
           <div>
-            <label className="label-text font-medium text-gray-600">
+            <label className="label-text font-medium text-yellow-100">
               First Name
             </label>
             <input
@@ -85,7 +84,7 @@ function EditProfile({ user }) {
             />
           </div>
           <div>
-            <label className="label-text font-medium text-gray-600">
+            <label className="label-text font-medium text-yellow-100">
               Last Name
             </label>
             <input
@@ -97,7 +96,9 @@ function EditProfile({ user }) {
             />
           </div>
           <div>
-            <label className="label-text font-medium text-gray-600">Age</label>
+            <label className="label-text font-medium text-yellow-100">
+              Age
+            </label>
             <input
               type="number"
               value={age}
@@ -107,7 +108,7 @@ function EditProfile({ user }) {
             />
           </div>
           <div>
-            <label className="label-text font-medium text-gray-600">
+            <label className="label-text font-medium text-yellow-100">
               Profile URL
             </label>
             <input
@@ -119,13 +120,13 @@ function EditProfile({ user }) {
             />
           </div>
           <div>
-            <label className="label-text font-medium text-gray-600">
+            <label className="label-text font-medium text-yellow-100">
               Gender
             </label>
             <select
               value={gender}
               onChange={(e) => setGender(e.target.value)}
-              className="select select-bordered w-full bg-gray-100 text-gray-800"
+              className="select select-bordered w-full text-yellow-100"
             >
               <option value="">Select</option>
               <option value="male">Male</option>
@@ -134,26 +135,26 @@ function EditProfile({ user }) {
             </select>
           </div>
           <div>
-            <label className="label-text font-medium text-gray-600">
+            <label className="label-text font-medium text-yellow-100">
               About
             </label>
             <textarea
               value={about}
               onChange={(e) => setAbout(e.target.value)}
-              className="textarea textarea-bordered w-full bg-gray-100 text-gray-800"
+              className="textarea textarea-bordered w-full  text-yellow-100"
               placeholder="Write something about yourself..."
               rows={4}
             ></textarea>
           </div>
           <div>
-            <label className="label-text font-medium text-gray-600">
+            <label className="label-text font-medium text-yellow-100">
               Skills{" "}
               <span className="text-sm text-gray-500">(comma separated)</span>
             </label>
             <textarea
               value={skillsInput}
               onChange={(e) => setSkillsInput(e.target.value)}
-              className="textarea textarea-bordered w-full bg-gray-100 text-gray-800"
+              className="textarea textarea-bordered w-full  text-yellow-100"
               placeholder="e.g., React, JavaScript, Tailwind"
               rows={2}
             ></textarea>
@@ -170,8 +171,10 @@ function EditProfile({ user }) {
         </div>
 
         {/* Right Side - Preview */}
-        <div className="bg-white rounded-2xl p-6 shadow-md flex flex-col items-center justify-center">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
+        <div className=" rounded-2xl p-6 shadow-md flex flex-col items-center justify-center">
+          <h2 className="text-xl font-semibold text-yellow-100 mb-4">
+            Preview
+          </h2>
           <UserCards
             userData={{
               firstName,

@@ -12,9 +12,9 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [openApiModel, setOpenApiModel] = useState(false);
   const navigate = useNavigate();
-  const [email, setEmail] = useState("risabh@gmail.com");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [password, setPassword] = useState("risabh@123#");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
@@ -33,7 +33,7 @@ const Login = () => {
       console.log(response);
       setOpenLoader(false);
       dispatch(addUser(response?.data));
-      navigate("/");
+      navigate("/feeds");
     } catch (error) {
       setOpenLoader(false);
       setOpenApiModel(true);
@@ -44,7 +44,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-pink-300 via-indigo-200 to-rose-500 flex items-center justify-center px-4">
+      <div className="min-h-screen  flex items-center justify-center px-4">
         <div className="w-full max-w-md shadow-xl rounded-2xl bg-white p-8 space-y-6">
           <h2 className="text-2xl font-bold text-center text-blue-700">
             Welcome Back
@@ -56,7 +56,7 @@ const Login = () => {
           <div className="space-y-4">
             <div>
               <label className="label">
-                <span className="label-text font-medium text-gray-300">
+                <span className="label-text font-medium text-gray-900">
                   Email
                 </span>
               </label>
@@ -72,7 +72,7 @@ const Login = () => {
 
             <div>
               <label className="label">
-                <span className="label-text font-medium text-gray-400">
+                <span className="label-text font-medium text-gray-900">
                   Password
                 </span>
               </label>
@@ -87,6 +87,7 @@ const Login = () => {
             </div>
             <p className="text-red-500"> {error}</p>
             <button
+              disabled={password === "" && email === "" ? true : false}
               onClick={() => handleLogin()}
               className="btn btn-primary w-full"
             >
@@ -94,7 +95,7 @@ const Login = () => {
             </button>
 
             <div className="text-center">
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-gray-800">
                 Don't have an account?{" "}
                 <Link
                   to="/signup"
