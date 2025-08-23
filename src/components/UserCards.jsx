@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { BASE_URL } from "../utils/globalApi";
-import Loader from "./utils/Loader";
+import Loader from "./utils/loader";
 import ApiErrorMessage from "../utils/ApiErrorMessage";
 import { useDispatch } from "react-redux";
 import { removedFeeds } from "./utils/strore/feedSlice";
