@@ -71,7 +71,7 @@ function PremiumPlan() {
       withCredentials: true,
     });
 
-    if (res.data.isPremium) {
+    if (res?.data?.isPremium) {
       setIsUserPremium(true);
     }
   };
@@ -103,7 +103,10 @@ function PremiumPlan() {
         theme: {
           color: "#C564CF",
         },
-        handler: verifyPremiumUser,
+        handler: function (response) {
+          console.log("Payment success response from Razorpay:", response);
+          verifyPremiumUser(); // call your verification API
+        },
       };
 
       const rzp = new window.Razorpay(options);
