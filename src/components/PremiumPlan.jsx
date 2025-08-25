@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BASE_URL } from "../utils/globalApi";
 
 const CheckIcon = () => (
@@ -61,6 +61,21 @@ const Perk = ({ children }) => (
 );
 
 function PremiumPlan() {
+  const [isUserPremium, setIsUserPremium] = useState(false);
+  useEffect(() => {
+    verifyPremiumUser();
+  }, []);
+
+  const verifyPremiumUser = async () => {
+    const res = await axios.get(BASE_URL + "/premium/verify", {
+      withCredentials: true,
+    });
+
+    if (res.data.isPremium) {
+      setIsUserPremium(true);
+    }
+  };
+
   const handlePayment = async (type) => {
     try {
       const response = await axios.post(
@@ -88,6 +103,7 @@ function PremiumPlan() {
         theme: {
           color: "#C564CF",
         },
+        handler: verifyPremiumUser,
       };
 
       const rzp = new window.Razorpay(options);
